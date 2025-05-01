@@ -15,17 +15,17 @@ const HomeLayout = () => {
                     <LatestNews />
                 </section>
                 <nav>
-                    <NavBar/>
+                    <NavBar />
                 </nav>
             </header>
             <main className='w-11/12 mx-auto my-3 grid grid-cols md:grid-cols-12 gap-5'>
-                <aside className='col-span-6 md:col-span-3 left-nav'>
+                <aside className='col-span-6 md:col-span-3 left-nav sticky top-0 h-fit'>
                     <LeftAside></LeftAside>
                 </aside>
                 <section className='col-span-6 main'>
                     <Outlet></Outlet>
                 </section>
-                <aside className='col-span-3 right-nav'>
+                <aside className='col-span-3 right-nav sticky top-0 h-fit'>
                     <RightAside></RightAside>
                 </aside>
             </main>
