@@ -28,8 +28,6 @@ const Register = () => {
                 navigate('/')
                 updateUser({ displayName: name, photoURL: photo }).then(() => {
                     setUser({ ...user, displayName: name, photoURL: photo })
-
-
                 })
                     .catch(error => {
                         alert(error);
@@ -49,7 +47,7 @@ const Register = () => {
                     <input type="text" name='name' className="w-full input" placeholder="Enter your Name" />
                     {nameError && <p className='text-secondary'>{nameError}</p>}
                     <label className="label">Photo URL</label>
-                    <input type="text" name='photo' className="w-full input" placeholder="Enter your Photo Url" />
+                    <input type="text" name='photo' className="w-full input" placeholder="Enter your Photo Url" required />
                     <label className="label">Email Address</label>
                     <input type="email" name='email' className="w-full input" placeholder="Enter your email address" />
                     <label className="label">Password</label>

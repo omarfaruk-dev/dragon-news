@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from '../assets/logo.png'
 import { format } from 'date-fns';
+import { Link } from 'react-router';
 
 const Header = () => {
     return (
         <div className='flex flex-col justify-center items-center gap-3'>
-            <img className='w-[400px]' src={logo} alt="logo" />
+            <Link to='/'><img className='w-[400px]' src={logo} alt="logo" /></Link>
             <p className='font-semibold text-accent'>Journalism Without Fear or Favour</p>
             <p className='font-semibold text-accent'>{format(new Date(), 'EEEE, MMMM MM, yyyy')}</p>
         </div>
