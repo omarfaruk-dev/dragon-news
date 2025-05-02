@@ -18,6 +18,7 @@ const Register = () => {
                     <input type="password" name='password' className="w-full input" placeholder="Enter your password" />
                     <div><p className="flex items-center gap-2"><input type="checkbox" className="checkbox checkbox-neutral checkbox-xs" /> Accept Terms & Conditions</p></div>
                     <button className="btn btn-primary mt-4">Register</button>
+                    <div><p className="">Already Have An Account? <Link to='/auth/login' className='link link-hover text-secondary font-bold'>Login</Link></p></div>
                     
                 </form>
             </div>

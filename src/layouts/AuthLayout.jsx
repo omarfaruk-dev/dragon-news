@@ -1,7 +1,6 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import Login from '../Pages/Login';
-import Register from '../Pages/Register';
+import { Outlet } from 'react-router';
 
 const AuthLayout = () => {
     return (
@@ -10,8 +9,7 @@ const AuthLayout = () => {
                 <NavBar/>
             </header>
             <main className='container mx-auto max-w-md'>
-                <Login/>
-                {/* <Register/> */}
+               <Outlet/>
             </main>
         </div>
     );
