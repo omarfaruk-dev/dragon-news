@@ -1,24 +1,42 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser } = use(AuthContext);
+    const { createUser, setUser, updateUser } = use(AuthContext);
+
+    const [nameError, setNameError] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
-        const photoUrl = e.target.photoUrl.value;
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, photoUrl, email, password);
+
+        if (name.length < 4) {
+            setNameError('Name should 4 character or longer!')
+            return;
+        } else {
+            setNameError('')
+        }
 
         createUser(email, password)
-            .then((result)=>{
-                const user = result.user
-                console.log(user);
+            .then((result) => {
+                const user = result.user;
+                navigate('/')
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo })
+
+
+                })
+                    .catch(error => {
+                        alert(error);
+                        setUser(user);
+                    })
             })
-            .catch(error=>alert('Something Wrong', error))
+            .catch(error => alert('Something Wrong', error))
 
     }
     return (
@@ -29,8 +47,9 @@ const Register = () => {
                 <form onSubmit={handleRegister} className="fieldset space-y-2">
                     <label className="label">Your Name</label>
                     <input type="text" name='name' className="w-full input" placeholder="Enter your Name" />
+                    {nameError && <p className='text-secondary'>{nameError}</p>}
                     <label className="label">Photo URL</label>
-                    <input type="text" name='photoUrl' className="w-full input" placeholder="Enter your Photo Url" />
+                    <input type="text" name='photo' className="w-full input" placeholder="Enter your Photo Url" />
                     <label className="label">Email Address</label>
                     <input type="email" name='email' className="w-full input" placeholder="Enter your email address" />
                     <label className="label">Password</label>
