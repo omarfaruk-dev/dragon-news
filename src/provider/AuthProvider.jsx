@@ -4,34 +4,33 @@ import { app } from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
 export const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 
 
 const AuthProvider = ({ children }) => {
 
+    const googleProvider = new GoogleAuthProvider();
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
 
-    // console.log(loading, user);
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const loginUser = (email, password) =>{
+    const loginUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const googleSignIn = ()=>{
-        
+    const googleSignIn = () => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    const updateUser = (updatedData) =>{
-        updateProfile(auth.currentUser,updatedData)
+    const updateUser = (updatedData) => {
+        updateProfile(auth.currentUser, updatedData)
     }
 
-    const logOut = ()=> {
+    const logOut = () => {
         return signOut(auth)
     };
 
